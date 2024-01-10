@@ -42,4 +42,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /* Relacion entre la tabla de usuarios y la tabla de post 
+       donde indica que un usuario tiene muchas publicaciones*/ 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
