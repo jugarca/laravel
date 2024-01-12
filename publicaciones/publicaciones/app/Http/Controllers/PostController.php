@@ -12,7 +12,13 @@ class PostController extends Controller
     }
 
     public function store(Request $request){
-       return $request->all();
+        //Validar la peticion que llega
+        //Validar que es body es requerido
+        $request -> validate(['body' => 'required']);
+        //Realiza el guardado en Base de datos
+        $request->user()->posts()->create($request->only('body'));
+        //Devuelve a la misma pagina 
+       return back()->with('status','publicacion guardada correctamente');
     }
 
     public function destroy(){
