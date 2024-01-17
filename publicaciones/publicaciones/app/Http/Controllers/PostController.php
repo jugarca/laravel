@@ -33,9 +33,12 @@ class PostController extends Controller
 
     public function destroy(Request $request, Post $post){
         //dd($request->user()->id);
-        if($request->user()->id !== $post->user_id){
+        /*if($request->user()->id !== $post->user_id){
             abort(403);
-        }
+        }*/
+        //En caso de que devuelva true continua y en caso de que devuelva false da un error controlado
+        $this->authorize('destroy-posts',$post);
+
         $post->delete();
         return back();
      }
