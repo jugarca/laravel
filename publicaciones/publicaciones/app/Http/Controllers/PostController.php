@@ -31,7 +31,11 @@ class PostController extends Controller
        return back()->with('status','publicacion guardada correctamente');
     }
 
-    public function destroy(Post $post){
+    public function destroy(Request $request, Post $post){
+        //dd($request->user()->id);
+        if($request->user()->id !== $post->user_id){
+            abort(403);
+        }
         $post->delete();
         return back();
      }
