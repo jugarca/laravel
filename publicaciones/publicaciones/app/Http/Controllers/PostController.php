@@ -37,7 +37,7 @@ class PostController extends Controller
             abort(403);
         }*/
         //En caso de que devuelva true continua y en caso de que devuelva false da un error controlado
-        $this->authorize('destroy-posts',$post);
+        $this->authorize('delete',$post);
 
         $post->delete();
         return back();

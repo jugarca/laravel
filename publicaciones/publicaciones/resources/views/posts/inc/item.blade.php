@@ -7,7 +7,7 @@
     </em>
         {{$post->body}}
 </p>
-@can('destroy-posts', $post)
+@can('delete', $post)
 <form action="{{route('posts.destroy', $post->id)}}" method="post">
     @csrf
     @method('delete')
